@@ -2,7 +2,8 @@
 function pageTurnForward() {
   const screenHeight = window.innerHeight;
   const currentScrollPosition = window.scrollY || window.pageYOffset;
-  const newScrollPosition = currentScrollPosition + screenHeight;
+  const scrollDepth = 0.8 * screenHeight;
+  const newScrollPosition = currentScrollPosition + scrollDepth;
 
   // Scroll the page to the new position without a smooth transition
   window.scrollTo({
@@ -14,7 +15,8 @@ function pageTurnForward() {
 function pageTurnBackward() {
   const screenHeight = window.innerHeight;
   const currentScrollPosition = window.scrollY || window.pageYOffset;
-  const newScrollPosition = currentScrollPosition - screenHeight;
+  const scrollDepth = 0.8 * screenHeight;
+  const newScrollPosition = currentScrollPosition - scrollDepth;
 
   // Scroll the page to the new position without a smooth transition
   window.scrollTo({
