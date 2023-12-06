@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Page-ified",
+    "name": "Pageify",
     "version": "1.0",
     "description": "Allow users to interact with browsers pages without scrolling.",
         "content_scripts": [
