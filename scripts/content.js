@@ -22,26 +22,17 @@ function pageTurnBackward() {
       behavior: 'auto'
   });
 }
-// Function to add styles to an element
-function addStyles(element, styles) {
-  for (const property in styles) {
-      if (styles.hasOwnProperty(property)) {
-          element.style[property] = styles[property];
-      }
-  }
-}
 
 // Insert left and right arrow icons
 const arrowButtons = document.createElement("div");
 arrowButtons.classList.add("arrow-buttons");
 
-// Define styles
-const arrowButtonsStyles = {
-  zIndex: "5000",
-  position: "absolute",
-  right: "10px",
-  bottom: "5%",
-};
+// Add styles to the arrowButtons div
+arrowButtons.style.zIndex = "5000";
+arrowButtons.style.position = "absolute";
+arrowButtons.style.right = "10px";
+arrowButtons.style.bottom = "50px";
+arrowButtons.style.color = "black";
 
 const leftArrowButton = document.createElement("button");
 leftArrowButton.id = "leftArrow";
