@@ -1,0 +1,29 @@
+/*Pop Up Styles*/
+.scroll-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-button {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    border: none;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 50%;
+    margin: 0 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.scroll-button:hover {
+    background-color: #fff;
+    color: #3498db;
+}
+
+.scroll-value {
+    font-size: 24px;
+    margin: 0 20px;
+}
