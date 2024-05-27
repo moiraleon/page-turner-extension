@@ -1,3 +1,9 @@
+// Dynamically insert Font Awesome CSS
+const fontAwesomeLink = document.createElement('link');
+fontAwesomeLink.rel = 'stylesheet';
+fontAwesomeLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
+document.head.appendChild(fontAwesomeLink);
+
 // Function to update the displayed value
 function updateScrollValue(scrollValueSpan, scrollPercentage) {
     scrollValueSpan.textContent = scrollPercentage * 10 + '%';
@@ -34,7 +40,7 @@ function rightButtonListener(scrollPercentage, scrollDepthDecimal, scrollValueSp
 
 // Function to save the scrollPercentage to background script
 function saveScrollPercentageToBackground(scrollPercentage) {
-    console.log("call to save scroll percentage" + scrollPercentage)
+    console.log("call to save scroll percentage" + scrollPercentage);
     chrome.runtime.sendMessage({ action: 'setScrollPercentage', scrollPercentage: scrollPercentage });
 }
 
@@ -115,9 +121,8 @@ function pageTurnForward() {
     });
 }
 
-
-  // Function to scroll the page backward
-  function pageTurnBackward() {
+// Function to scroll the page backward
+function pageTurnBackward() {
     // Function to retrieve scrollDepthDecimal from background script
     function retrieveScrollDepthDecimalFromBackground(callback) {
         chrome.runtime.sendMessage({ action: 'getScrollDepthDecimal' }, function(response) {
@@ -225,4 +230,29 @@ rightArrowButton.addEventListener("click", pageTurnForward);
 arrowButtons.appendChild(leftArrowButton);
 arrowButtons.appendChild(rightArrowButton);
 
-document.body.appendChild(arrowButtons);
+// Select the correct body element
+const correctBody = document.querySelector('body:not(.extension-body)');
+correctBody.appendChild(arrowButtons);
+
+// // Add styles for the toggle icon
+// const toggleIcon = document.getElementById('toggleIcon');
+// const toggleIconStyles = {
+//     fontSize: '24px',
+//     width: '24px', 
+//     height: '24px',
+//     cursor: 'pointer',
+// };
+// // Function to apply styles
+// function addStyles(element, styles) {
+//     Object.assign(element.style, styles);
+// }
+// // Apply styles to toggle icon
+// addStyles(toggleIcon, toggleIconStyles);
+
+// // Event listener for toggling the eye icon
+// toggleIcon.addEventListener('click', function() {
+//     console.log('Icon clicked!');
+//     const icon = this.querySelector('i');
+//     icon.classList.toggle('fa-eye'); // Toggle fa-eye class
+//     icon.classList.toggle('fa-eye-slash'); // Toggle fa-eye-slash class
+// });

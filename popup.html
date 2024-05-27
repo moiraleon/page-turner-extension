@@ -5,12 +5,19 @@
     <title>Scroll Bar Example</title>
     <link rel="stylesheet" type="text/css" href="assets/popup-styles.css">
 </head>
-<body>
-  <div class="scroll-container">
-    <button class="left-button">-</button>
-    <span class="scroll-value">80%</span>
-    <button class="right-button">+</button>
-</div>
+<body class="extension-body">
+    <div class="scroll-container">
+      <button class="left-button">-</button>
+      <span class="scroll-value">80%</span>
+      <button class="right-button">+</button>
+  </div>
+    <div class="toggle-view-container">
+        <span>
+        <p class="toggle-text">Visibility</p>
+        <button id="toggleIcon" class="icon"><i class="fa-solid fa-eye"></i></button>
+    </span>
+    </div>
     <script src="scripts/content.js"></script>
+    <script src="https://kit.fontawesome.com/410e7f7b9c.js" crossorigin="anonymous"></script>
 </body>
 </html>
