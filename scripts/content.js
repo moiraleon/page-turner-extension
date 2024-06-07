@@ -205,6 +205,10 @@ const buttonStyles = `
       color: #3498db;
       border: 2px solid #3498db;
   }
+
+  .hidden {
+    display: none !important;
+}
 `;
 
 // Create a style element and append it to the head
@@ -234,25 +238,10 @@ arrowButtons.appendChild(rightArrowButton);
 const correctBody = document.querySelector('body:not(.extension-body)');
 correctBody.appendChild(arrowButtons);
 
-// // Add styles for the toggle icon
-// const toggleIcon = document.getElementById('toggleIcon');
-// const toggleIconStyles = {
-//     fontSize: '24px',
-//     width: '24px', 
-//     height: '24px',
-//     cursor: 'pointer',
-// };
-// // Function to apply styles
-// function addStyles(element, styles) {
-//     Object.assign(element.style, styles);
-// }
-// // Apply styles to toggle icon
-// addStyles(toggleIcon, toggleIconStyles);
-
-// // Event listener for toggling the eye icon
-// toggleIcon.addEventListener('click', function() {
-//     console.log('Icon clicked!');
-//     const icon = this.querySelector('i');
-//     icon.classList.toggle('fa-eye'); // Toggle fa-eye class
-//     icon.classList.toggle('fa-eye-slash'); // Toggle fa-eye-slash class
-// });
+// Add toggle functionality for arrow buttons
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    if (request.action === "toggleArrows") {
+        arrowButtons.classList.toggle("hidden");
+        sendResponse({ status: "arrows toggled" });
+    }
+});
