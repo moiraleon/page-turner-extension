@@ -1,3 +1,9 @@
+// Dynamically insert Font Awesome CSS
+const fontAwesomeLink = document.createElement('link');
+fontAwesomeLink.rel = 'stylesheet';
+fontAwesomeLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
+document.head.appendChild(fontAwesomeLink);
+
 // Function to update the displayed value
 function updateScrollValue(scrollValueSpan, scrollPercentage) {
     scrollValueSpan.textContent = scrollPercentage * 10 + '%';
@@ -34,7 +40,7 @@ function rightButtonListener(scrollPercentage, scrollDepthDecimal, scrollValueSp
 
 // Function to save the scrollPercentage to background script
 function saveScrollPercentageToBackground(scrollPercentage) {
-    console.log("call to save scroll percentage" + scrollPercentage)
+    console.log("call to save scroll percentage" + scrollPercentage);
     chrome.runtime.sendMessage({ action: 'setScrollPercentage', scrollPercentage: scrollPercentage });
 }
 
@@ -115,9 +121,8 @@ function pageTurnForward() {
     });
 }
 
-
-  // Function to scroll the page backward
-  function pageTurnBackward() {
+// Function to scroll the page backward
+function pageTurnBackward() {
     // Function to retrieve scrollDepthDecimal from background script
     function retrieveScrollDepthDecimalFromBackground(callback) {
         chrome.runtime.sendMessage({ action: 'getScrollDepthDecimal' }, function(response) {
@@ -200,6 +205,10 @@ const buttonStyles = `
       color: #3498db;
       border: 2px solid #3498db;
   }
+
+  .hidden {
+    display: none !important;
+}
 `;
 
 // Create a style element and append it to the head
@@ -225,4 +234,14 @@ rightArrowButton.addEventListener("click", pageTurnForward);
 arrowButtons.appendChild(leftArrowButton);
 arrowButtons.appendChild(rightArrowButton);
 
-document.body.appendChild(arrowButtons);
+// Select the correct body element
+const correctBody = document.querySelector('body:not(.extension-body)');
+correctBody.appendChild(arrowButtons);
+
+// Add toggle functionality for arrow buttons
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    if (request.action === "toggleArrows") {
+        arrowButtons.classList.toggle("hidden");
+        sendResponse({ status: "arrows toggled" });
+    }
+});
